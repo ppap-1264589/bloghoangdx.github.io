@@ -11,4 +11,4 @@ title: Trang chủ
 
 # Các chủ đề
 
-[Xem bài toán phân tích logfile](phantichlogfile/)
+[Bảng băm](hashing/)
