@@ -11,4 +11,4 @@ title: Trang chủ
 
 # Các chủ đề
 
-[Bài toán phân tích logfile](/phantichlogfile/)
+[Bài toán phân tích logfile](/Phantichlogfile/)
