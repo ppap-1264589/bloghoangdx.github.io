@@ -1,13 +1,14 @@
 ---
 layout: default
-title: Phân tích logfile
+title: Trang chủ
 ---
-# Bài toán
 
-Cho một file log
+# Chào mừng đến với trang của tôi!
 
-Yêu cầu thực hiện các phân tích sau
+Đây là trang chủ.
 
-...
+Ở đây tôi sẽ viết một số chủ đề liên quan đến kinh nghiệm lập trình, thuật toán mà tôi đã từng lĩnh hội được hồi còn học cấp 3 và Đại học
 
-[Quay lại trang chủ](/)
+# Các chủ đề
+
+[Xem bài toán phân tích logfile](phantichlogfile/)
