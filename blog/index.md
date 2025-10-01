@@ -6,4 +6,4 @@ title: Blog của tôi
 
 Nội dung blog ở đây.
 
-[Quay lại trang chủ](/)
+[Quay lại trang chủ](/index.md)
