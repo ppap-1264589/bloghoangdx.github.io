@@ -10,4 +10,4 @@ Yêu cầu thực hiện các phân tích sau
 
 ...
 
-[Quay lại trang chủ](/kinhnghiemlaptrinh/)
+[Quay lại trang chủ](../)
