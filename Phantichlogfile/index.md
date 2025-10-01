@@ -10,4 +10,4 @@ Yêu cầu thực hiện các phân tích sau
 
 ...
 
-[Quay lại trang chủ]({{site.baseurl}}/)
+[Quay lại trang chủ](/)
