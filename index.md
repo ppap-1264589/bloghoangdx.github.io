@@ -2,4 +2,4 @@
 
 Đây là trang chủ.
 
-[Xem Blog của tôi](/blog/index.md)
+[Xem Blog của tôi](/blog/)
