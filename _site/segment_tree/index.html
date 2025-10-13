@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/kinhnghiemlaptrinh/assets/css/style.css?v=">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Segment Tree | Kinh nghiệm lập trình</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Segment Tree" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/kinhnghiemlaptrinh/segment_tree/" />
+<meta property="og:url" content="http://localhost:4000/kinhnghiemlaptrinh/segment_tree/" />
+<meta property="og:site_name" content="Kinh nghiệm lập trình" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Segment Tree" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","headline":"Segment Tree","url":"http://localhost:4000/kinhnghiemlaptrinh/segment_tree/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/kinhnghiemlaptrinh/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          
+
+          <h1 id="project_title">Kinh nghiệm lập trình</h1>
+          <h2 id="project_tagline"></h2>
+
+          
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1 id="bài-toán">Bài toán</h1>
+
+<p>Cho n hình chữ nhật trên mặt phẳng tọa độ, tính phần diện tích bị phủ bởi chính xác 2 hình chữ nhật. Mọi phần diện tích bị phủ bởi 1, hoặc 3, hoặc 4,… đều không được tính vào kết quả</p>
+
+<h1 id="input">Input</h1>
+
+<p>Dòng đầu tiên nhập số n</p>
+
+<p>Từ dòng thứ hai trở đi, mỗi dòng nhập 4 số: x1, y1, x2, y2. Lần lượt thể hiện tọa độ góc trái dưới và phải trên của hình chữ nhật</p>
+
+<h1 id="output">Output</h1>
+
+<p>Một dòng duy nhất là phần diện tích bị phủ bởi chính xác 2 hình chữ nhật</p>
+
+<h1 id="giới-hạn">Giới hạn:</h1>
+
+<p>1 &lt;= n &lt;= 10^5</p>
+
+<p>-10^9 &lt;= x1 &lt; x2 &lt;= 10^9</p>
+
+<p>-10^9 &lt;= y1 &lt; y2 &lt;= 10^9</p>
+
+<h1 id="test-ví-dụ">Test ví dụ</h1>
+
+<h2 id="input-1">Input</h2>
+<pre><code class="language-C++">3
+1 3 4 5
+3 1 7 4
+5 3 8 6
+</code></pre>
+
+<h2 id="output-1">Output</h2>
+<pre><code class="language-C++">3
+</code></pre>
+
+<h1 id="minh-họa">Minh họa</h1>
+
+<p><img src="TestDeBai.png" alt="Minh họa" /></p>
+
+<h1 id="lời-giải">Lời giải</h1>
+
+<p>Có sự đóng góp lời giải cho hàm push_up() đến từ ChatGPT</p>
+
+<pre><code class="language-C++">#include &lt;bits/stdc++.h&gt;
+#define up(i,a,b) for (int i = (int)a; i &lt;= (int)b; i++)
+using namespace std;
+
+const int maxn = 1e5 + 10;
+const int MOD = 1e9 + 7;
+struct EVENT{
+    int x;
+    int y1;
+    int y2;
+    int type;
+};
+//Các sự kiện sweepline gồm tọa độ x, độ dài y1, y2, và kiểu sự kiện
+//đóng hay mở một đoạn thẳng
+
+bool comp(EVENT&amp; A, EVENT&amp; B){
+    if (A.x == B.x) return A.type &gt; B.type;
+    return A.x &lt; B.x;
+}
+//Xử lý các sự kiện x trước
+
+vector&lt;EVENT&gt; events;
+vector&lt;int&gt; tempY;
+
+int n, treesize;
+long long T1[maxn &lt;&lt; 3];
+long long T2[maxn &lt;&lt; 3];
+long long T3[maxn &lt;&lt; 3];
+int delta[maxn &lt;&lt; 3];
+//treesize thể hiện kích thước thực sự của cây sau khi bị nén
+//maxn &lt;&lt; 1 cho số lượng sự kiện tối đa có thể xảy ra (1 mở và 1 đóng)
+//maxn &lt;&lt; 3 cho ước lượng segment tree trên toàn sự kiện
+//T1 thể hiện segment tree quản lý diện tích bị phủ bởi ít nhất 1 đoạn thẳng
+//T2: bị phủ bởi &gt;= 2 đoạn thẳng
+//T3: bị phủ bởi &gt;= 3 đoạn thẳng
+
+
+void push_up(int nod, int l, int r){
+    int len = tempY[r+1] - tempY[l];
+    if (delta[nod] &gt;= 3) {
+//      đoạn này bị phủ &gt;=3 lần =&gt; toàn bộ là T3
+        T3[nod] = T2[nod] = T1[nod] = len;
+        return;
+    }
+
+    if (l == r){
+        // Xử lý riêng các trường hợp nút lá
+        if (delta[nod] == 2)        T1[nod] = T2[nod] = len, T3[nod] = 0;
+        else if (delta[nod] == 1)   T1[nod] = len, T2[nod] = T3[nod] = 0;
+        else if (delta[nod] == 0)   T1[nod] = T2[nod] = T3[nod] = 0;
+        return;
+    }
+
+    if (delta[nod] == 2){
+        // whole interval has +2; so &gt;=1 and &gt;=2 are full length
+        T1[nod] = T2[nod] = len;
+        // &gt;=3 are positions where child had &gt;=1
+        T3[nod] = T1[nod*2] + T1[nod*2+1];
+        return;
+    }
+    if (delta[nod] == 1){
+        // whole interval has +1 =&gt; &gt;=1 is full length
+        T1[nod] = len;
+        // &gt;=2 are positions where child had &gt;=1
+        T2[nod] = T1[nod*2] + T1[nod*2+1];
+        // &gt;=3 are positions where child had &gt;=2
+        T3[nod] = T2[nod*2] + T2[nod*2+1];
+        return;
+    }
+    // delta == 0
+    T1[nod] = T1[nod*2] + T1[nod*2+1];
+    T2[nod] = T2[nod*2] + T2[nod*2+1];
+    T3[nod] = T3[nod*2] + T3[nod*2+1];
+}
+//Nếu "khoảng" [l, r] bị bao hoàn toàn thì lấy toàn bộ
+//Nếu "khoảng" [l, r] chỉ bị bao một phần và không phải nút lá thì cập nhật dựa theo con
+//Nếu "khoảng" lá không bị bao thì phải bằng 0
+//Chú ý: nếu không có điều kiện (l != r) thì segment tree có thể lấy T[nod*2] với nod*2 là chỉ số tràn ngoài phạm vi đã khai báo
+
+void update(int nod, int l, int r, int u, int v, int val){
+    if (r &lt; u || l &gt; v) return;
+    if (l &gt;= u &amp;&amp; r &lt;= v){
+        delta[nod] += val;
+        push_up(nod, l, r);
+        return;
+    }
+    int mid = (l+r) &gt;&gt; 1;
+    update(nod*2, l, mid, u, v, val);
+    update(nod*2+1, mid+1, r, u, v, val);
+    push_up(nod, l, r);
+}
+
+signed main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    #define Task "A"
+    if (fopen(Task".inp", "r")){
+        freopen(Task".inp", "r", stdin);
+        freopen(Task".out", "w", stdout);
+    }
+
+    cin &gt;&gt; n;
+    up(i,1,n){
+        int x1, y1, x2, y2;
+        cin &gt;&gt; x1 &gt;&gt; y1 &gt;&gt; x2 &gt;&gt; y2;
+        tempY.push_back(y1);
+        tempY.push_back(y2);
+        events.push_back({x1, y1, y2, 1});
+        events.push_back({x2, y1, y2, -1});
+    }
+
+    tempY.push_back(-MOD);
+    sort(tempY.begin(), tempY.end());
+    tempY.resize(unique(tempY.begin(), tempY.end()) - tempY.begin());
+    treesize = tempY.size()-1;
+//    tempY thêm phần tử -MOD để lấy lowerbound với chỉ số bắt đầu từ 1
+//    treesize = tempY.size()-1 vì phải bỏ qua phần tử -MOD;
+
+
+    sort(events.begin(), events.end(), comp);
+
+    long long res = 0;
+    for (int i = 0; i &lt; (int)(events.size()-1); i++){
+        int u = lower_bound(tempY.begin(), tempY.end(), events[i].y1) - tempY.begin();
+        int v = lower_bound(tempY.begin(), tempY.end(), events[i].y2) - tempY.begin();
+
+
+        update(1, 1, treesize-1, u, v-1, events[i].type);
+        res += 1ll * (T2[1] - T3[1]) * (events[i+1].x - events[i].x);
+//        Segment tree quản lý các "khoảng" giữa tọa độ điểm này và tọa độ điểm kia
+//        có treesize tọa độ điểm thì có treesize-1 "khoảng"
+//        Tại mỗi nút chỉ số v quản lý khoảng [l, r], lấy kết quả nút nếu bị bao toàn bộ là tempY[r+1] - tempY[l]
+//        Do đó, mỗi lần lấy kết quả trong tọa độ [u, v] thì lấy kết quả trên "khoảng" [u, v-1] trên segment tree
+
+//        cout &lt;&lt; T1[1] &lt;&lt; " " &lt;&lt; T2[1] &lt;&lt; " " &lt;&lt; T3[1] &lt;&lt; " " &lt;&lt; res &lt;&lt; " ";
+//        cout &lt;&lt; u &lt;&lt; " " &lt;&lt; v &lt;&lt; "\n";
+    }
+    cout &lt;&lt; res;
+}
+
+
+
+
+
+
+//#include &lt;bits/stdc++.h&gt;
+//#define up(i,a,b) for (int i = (int)a; i &lt;= (int)b; i++)
+//#define down(i,a,b) for (int i = (int)a; i &gt;= (int)b; i--)
+//using namespace std;
+//
+//const int maxn = 5e2 + 10;
+//int n;
+//int a[maxn][maxn];
+//int MAXX = 500;
+//int MAXY = 500;
+//
+//signed main(){//code trau
+//    ios_base::sync_with_stdio(false);
+//    cin.tie(0);
+//    #define Task "A"
+//    if (fopen(Task".inp", "r")){
+//        freopen(Task".inp", "r", stdin);
+//        freopen(Task".out", "w", stdout);
+//    }
+//
+//    int maxx, maxy;
+//    maxx = -MAXX;
+//    maxy = -MAXX;
+//    cin &gt;&gt; n;
+//    up(i,1,n){
+//        int x1, y1, x2, y2;
+//        cin &gt;&gt; x1 &gt;&gt; y1 &gt;&gt; x2 &gt;&gt; y2;
+//        maxx = max(maxx, x2-1);
+//        maxy = max(maxy, y2-1);
+//        up(i, x1, x2-1){
+//            up(j, y1, y2-1){
+//                ++a[i][j];
+//            }
+//        }
+//    }
+//
+//    int cnt = 0;
+//    up(i,1,maxx){
+//        up(j,1,maxy){
+//            if (a[i][j] == 2) ++cnt;
+//        }
+//    }
+//    cout &lt;&lt; cnt &lt;&lt; "\n";
+//
+//
+//    down(j,maxy,1){
+//        up(i,1,maxx){
+//            cout &lt;&lt; a[i][j] &lt;&lt; " ";
+//        }
+//        cout &lt;&lt; "\n";
+//    }
+//}
+</code></pre>
+<p><a href="../">Quay lại trang chủ</a></p>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

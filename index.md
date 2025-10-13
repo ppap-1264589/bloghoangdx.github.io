@@ -12,3 +12,5 @@ title: Trang chủ
 # Các chủ đề
 
 [Bảng băm](hashing/)
+
+[Ứng dụng Segment Tree](segment_tree/)
