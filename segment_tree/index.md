@@ -48,7 +48,7 @@ Một dòng duy nhất là phần diện tích bị phủ bởi chính xác 2 h�
 
 Có sự đóng góp lời giải cho hàm push_up() đến từ ChatGPT
 
-~~~C++
+~~~cpp
 #include <bits/stdc++.h>
 #define up(i,a,b) for (int i = (int)a; i <= (int)b; i++)
 using namespace std;
