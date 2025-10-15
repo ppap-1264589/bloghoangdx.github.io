@@ -3,3 +3,7 @@ url: https://ppap-1264589.github.io
 theme: jekyll-theme-slate
 title: Kinh nghiệm lập trình
 permalink: pretty
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+parse_block_html: true

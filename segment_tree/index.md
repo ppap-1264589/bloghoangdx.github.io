@@ -1,10 +1,11 @@
 ---
 layout: default
 title: Segment Tree
+mathjax: true
 ---
 # Bài toán
 
-Cho n hình chữ nhật trên mặt phẳng tọa độ, tính phần diện tích bị phủ bởi chính xác 2 hình chữ nhật. Mọi phần diện tích bị phủ bởi 1, hoặc 3, hoặc 4,... đều không được tính vào kết quả
+Cho $n$ hình chữ nhật trên mặt phẳng tọa độ, tính phần diện tích bị phủ bởi chính xác 2 hình chữ nhật. Mọi phần diện tích bị phủ bởi 1, hoặc 3, hoặc 4,... đều không được tính vào kết quả
 
 # Input
 
@@ -48,7 +49,7 @@ Một dòng duy nhất là phần diện tích bị phủ bởi chính xác 2 h�
 
 Có sự đóng góp lời giải cho hàm push_up() đến từ ChatGPT
 
-~~~C++
+~~~cpp
 #include <bits/stdc++.h>
 #define up(i,a,b) for (int i = (int)a; i <= (int)b; i++)
 using namespace std;
