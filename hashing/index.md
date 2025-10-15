@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Bảng băm
-mathjax: true
+use_math: true
 ---
 # Bài toán
 

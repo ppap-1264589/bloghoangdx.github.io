@@ -5,5 +5,5 @@ title: Kinh nghiệm lập trình
 permalink: pretty
 markdown: kramdown
 kramdown:
+  parse_block_html: true
   math_engine: mathjax
-parse_block_html: true

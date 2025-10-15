@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Trang chủ
-mathjax: true
+use_math: true
 ---
 
 # Chào mừng đến với trang của tôi!

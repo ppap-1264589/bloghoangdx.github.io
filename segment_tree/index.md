@@ -1,42 +1,43 @@
 ---
 layout: default
 title: Segment Tree
-mathjax: true
+use_math: true
 ---
 # Bài toán
 
-Cho $n$ hình chữ nhật trên mặt phẳng tọa độ, tính phần diện tích bị phủ bởi chính xác 2 hình chữ nhật. Mọi phần diện tích bị phủ bởi 1, hoặc 3, hoặc 4,... đều không được tính vào kết quả
+Cho $n$ hình chữ nhật trên mặt phẳng tọa độ, tính phần diện tích bị phủ bởi chính xác $2$ hình chữ nhật. Mọi phần diện tích bị phủ bởi $1$, hoặc $3$, hoặc $4$,... đều không được tính vào kết quả
 
 # Input
 
-Dòng đầu tiên nhập số n
+Dòng đầu tiên nhập số $n$
 
-Từ dòng thứ hai trở đi, mỗi dòng nhập 4 số: x1, y1, x2, y2. Lần lượt thể hiện tọa độ góc trái dưới và phải trên của hình chữ nhật
+Từ dòng thứ hai trở đi, nhập $n$ dòng, mỗi dòng nhập $4$ số: $x_1, y_1, x_2, y_2$. Lần lượt thể hiện tọa độ góc trái dưới và phải trên của hình chữ nhật
 
 # Output
 
-Một dòng duy nhất là phần diện tích bị phủ bởi chính xác 2 hình chữ nhật
+Một dòng duy nhất là phần diện tích bị phủ bởi chính xác $2$ hình chữ nhật
 
 # Giới hạn:
 
-1 <= n <= 10^5
+$1 <= n <= 10^5$
 
--10^9 <= x1 < x2 <= 10^9
+$-10^9 <= x_1 < x_2 <= 10^9$
 
--10^9 <= y1 < y2 <= 10^9
+$-10^9 <= y_1 < y_2 <= 10^9$
+
 
 # Test ví dụ
 
 ## Input
-```C++
-3
-1 3 4 5
-3 1 7 4
-5 3 8 6
-```
+```cpp 
+3 
+1 3 4 5 
+3 1 7 4 
+5 3 8 6 
+``` 
 
 ## Output
-```C++
+```cpp
 3
 ```
 
@@ -47,9 +48,17 @@ Một dòng duy nhất là phần diện tích bị phủ bởi chính xác 2 h�
 
 # Lời giải
 
-Có sự đóng góp lời giải cho hàm push_up() đến từ ChatGPT
+Có sự đóng góp lời giải cho hàm $\text{push_up()}$ đến từ ChatGPT
 
-~~~cpp
+My comment: Rời rạc hóa dữ liệu, sort theo sự kiện x, update số lượng ô đang active trong quá trình sweepline thì mình có thể hiểu được
+
+Còn logic về cây $\text{delta}$, để thể hiện số lượng đoạn con bị chồng lên tối thiểu thì mình không hiểu tại sao nó đúng.
+
+Đoạn update cây $\text{T1}$, $\text{T2}$, $\text{T3}$ mình cũng không hiểu tại sao lại đúng luôn.
+
+Nói chung là một bài yêu cầu logic rất cao
+ 
+```cpp
 #include <bits/stdc++.h>
 #define up(i,a,b) for (int i = (int)a; i <= (int)b; i++)
 using namespace std;
@@ -247,5 +256,10 @@ signed main(){
 //        cout << "\n";
 //    }
 //}
-~~~
+```
 [Quay lại trang chủ](../)
+
+
+$$
+K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar)
+$$
