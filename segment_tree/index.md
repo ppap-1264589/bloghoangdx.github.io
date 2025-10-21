@@ -198,68 +198,11 @@ signed main(){
     }
     cout << res;
 }
-
-
-
-
-
-
-//#include <bits/stdc++.h>
-//#define up(i,a,b) for (int i = (int)a; i <= (int)b; i++)
-//#define down(i,a,b) for (int i = (int)a; i >= (int)b; i--)
-//using namespace std;
-//
-//const int maxn = 5e2 + 10;
-//int n;
-//int a[maxn][maxn];
-//int MAXX = 500;
-//int MAXY = 500;
-//
-//signed main(){//code trau
-//    ios_base::sync_with_stdio(false);
-//    cin.tie(0);
-//    #define Task "A"
-//    if (fopen(Task".inp", "r")){
-//        freopen(Task".inp", "r", stdin);
-//        freopen(Task".out", "w", stdout);
-//    }
-//
-//    int maxx, maxy;
-//    maxx = -MAXX;
-//    maxy = -MAXX;
-//    cin >> n;
-//    up(i,1,n){
-//        int x1, y1, x2, y2;
-//        cin >> x1 >> y1 >> x2 >> y2;
-//        maxx = max(maxx, x2-1);
-//        maxy = max(maxy, y2-1);
-//        up(i, x1, x2-1){
-//            up(j, y1, y2-1){
-//                ++a[i][j];
-//            }
-//        }
-//    }
-//
-//    int cnt = 0;
-//    up(i,1,maxx){
-//        up(j,1,maxy){
-//            if (a[i][j] == 2) ++cnt;
-//        }
-//    }
-//    cout << cnt << "\n";
-//
-//
-//    down(j,maxy,1){
-//        up(i,1,maxx){
-//            cout << a[i][j] << " ";
-//        }
-//        cout << "\n";
-//    }
-//}
 ```
 [Quay lại trang chủ](../)
 
+### Bonus
 
-$$
-K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar)
-$$
+test tính năng gõ MathJax v3
+
+$$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
