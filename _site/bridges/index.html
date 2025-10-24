@@ -5,7 +5,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,maximum-scale=2">
-    <link rel="stylesheet" type="text/css" media="screen" href="/kinhnghiemlaptrinh/assets/css/style.css?v=ed70cb64e37924e3d8f2a54c718a852208e31ddc">
+    <link rel="stylesheet" type="text/css" media="screen" href="/kinhnghiemlaptrinh/assets/css/style.css?v=3b6c3d9d2a4603322bdcbdb9832ba262622263d3">
 
     <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Khớp cầu | Kinh nghiệm lập trình</title>
@@ -74,9 +74,17 @@ MathJax = {
         <h1 id="bài-toán">Bài toán</h1>
 <p>Tìm cạnh cầu và đỉnh khớp</p>
 
-<p>Nhập n là số đỉnh, m là số cạnh, u - v là các cặp cạnh trong đồ thị</p>
+<h3 id="input">Input</h3>
 
-<p>Cho biết các cạnh cầu và đỉnh khớp</p>
+<p>Dòng đầu nhập $n$ là số đỉnh, $m$ là số cạnh trong đồ thị $G$</p>
+
+<p>$m$ dòng tiếp theo, mỗi dòng ghi hai số $u$, $v$, là các cặp cạnh trong $G$</p>
+
+<p>Biết $G$ là đồ thị vô hướng</p>
+
+<h3 id="output">Output</h3>
+
+<p>Cho biết các cạnh cầu và đỉnh khớp của $G$</p>
 
 <h1 id="code">Code</h1>
 
@@ -109,7 +117,7 @@ MathJax = {
             <span class="n">par</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">;</span>
             <span class="n">DFS</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
             <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span> <span class="c1">//Để ra ngoài</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span>
                 <span class="n">bridge</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">min</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="n">max</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)});</span>
             <span class="p">}</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="o">++</span><span class="n">isolated</span><span class="p">;</span>
@@ -142,13 +150,13 @@ MathJax = {
         <span class="n">DFS</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
     <span class="p">}</span>
 
-<span class="c1">//    cout &lt;&lt; bridge.size() &lt;&lt; "\n";</span>
-<span class="c1">//    for (auto x : bridge){</span>
-<span class="c1">//        cout &lt;&lt; x.f &lt;&lt; " " &lt;&lt; x.s &lt;&lt; "\n";</span>
-<span class="c1">//    }</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">bridge</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">x</span> <span class="o">:</span> <span class="n">bridge</span><span class="p">){</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">f</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">s</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">joint</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">x</span> <span class="o">:</span> <span class="n">joint</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+<span class="c1">//    cout &lt;&lt; joint.size() &lt;&lt; "\n";</span>
+<span class="c1">//    for (auto x : joint) cout &lt;&lt; x &lt;&lt; " ";</span>
 
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -157,39 +165,181 @@ MathJax = {
 <h1 id="notes">Notes:</h1>
 
 <h2 id="chú-ý-1">Chú ý 1:</h2>
-<p>Giả sử ta để điều kiện kiểm tra xem (u, v) có phải cạnh cầu hay không ra ngoài điều kiện if (!num[v]) như sau:</p>
+<p>Một cạnh ngược trên cây DFS sẽ được thuật toán “chạy qua” $2$ lần</p>
+
+<p><img src="/kinhnghiemlaptrinh/bridges/ViDu_CanhNguocThamHaiLan.png" alt="Minh họa" /></p>
+
+<p>Rất nhiều người nghĩ là cạnh ngược chỉ đi một lần là lượt thăm số $3$, chứ không có lượt thăm số $4$.</p>
+
+<p>Lý do cho hiện tượng thăm hai lần này chính là do cách cài đặt của thuật toán.</p>
+
+<p>Để xem có cạnh ngược vào đi vòng qua $u$ lên tổ tiên của $u$ không, thuật toán vẫn cho phép một đỉnh $v$ có $num[v] \neq 0$ có thể được chạm tới từ một đỉnh khác trong quá trình duyệt cây.</p>
+
+<p>Điều này vô tình làm cho một cạnh ngược bị xét qua hai lần.</p>
+
+<p>Tại lượt duyệt 3:</p>
+<ul>
+  <li>$low[u] = min(low[u], num[v])$.</li>
+  <li>Lúc này sẽ $low[u]$ sẽ được cập nhật theo đúng định nghĩa của $low[]$.</li>
+</ul>
+
+<p><img src="/kinhnghiemlaptrinh/bridges/MinhHoa_CanhNguocLanMot.png" alt="Minh họa" /></p>
+
+<p>Tại lượt duyệt $4$:</p>
+<ul>
+  <li>$low[u] = min(low[u], num[v])$.</li>
+  <li>Việc cập nhật sẽ không còn ý nghĩa nữa, vì lúc này $low[u]$ luôn nhỏ hơn hoặc bằng $num[v]$ mất rồi.</li>
+</ul>
+
+<p><img src="/kinhnghiemlaptrinh/bridges/MinhHoa_CanhNguocLanHai.png" alt="Minh họa" /></p>
+
+<p>Như vậy:</p>
+
+<p>$1.$ Việc cạnh ngược bị duyệt qua hai lần này không ảnh hưởng đến tính đúng của thuật toán.</p>
+
+<p>$2.$ $low[u]$ vẫn chỉ được update khi đang xét cạnh ngược lần thứ nhất</p>
+
+<h2 id="chú-ý-2">Chú ý 2:</h2>
+<p>Giả sử ta để điều kiện kiểm tra xem $(u, v)$ có phải cạnh cầu hay không ra bên ngoài điều kiện $\text{if (num[v] != 0)}$ như sau:</p>
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">:</span> <span class="n">a</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">par</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">num</span><span class="p">[</span><span class="n">v</span><span class="p">]){</span>
-        <span class="n">par</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">;</span>
-        <span class="n">DFS</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+        <span class="p">...</span>
         <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="o">++</span><span class="n">isolated</span><span class="p">;</span>
+        <span class="p">...</span>
     <span class="p">}</span>
     <span class="k">else</span> <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">num</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span> <span class="c1">//Để ra ngoài</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span> <span class="c1">//Đặt điều kiện kiểm tra cầu ra bên ngoài điều kiện (!num[v])</span>
         <span class="n">bridge</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">min</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="n">max</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)});</span>
-    <span class="p">}</span>
+    <span class="p">}</span>   
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Thì kết quả bài toán vẫn đúng</p>
+<p>Thì kết quả của bài toán tìm cầu vẫn đúng</p>
 
 <h3 id="lý-do">Lý do:</h3>
 
-<p>Việc đặt điều kiện kiểm tra cạnh cầu ra bên ngoài điều kiện if (!num[v]), tương đương với việc ta xét cả hai trường hợp cung xuất hiện tại đỉnh u:</p>
+<p>Việc đặt điều kiện kiểm tra cạnh cầu ra bên ngoài điều kiện $\text{if (num[v] != 0)}$, tương đương với việc ta xét cả hai trường hợp cung xuất hiện tại đỉnh $u$:</p>
 
 <ol>
-  <li>cung xuôi (v là đỉnh chưa thăm trong quá trình DFS từ u đến v)</li>
-  <li>cung ngược (v là đỉnh đã thăm trong quá trình DFS từ u đến v)</li>
+  <li>cung xuôi ($v$ là đỉnh chưa thăm trong quá trình DFS từ $u$ đến $v$)</li>
+  <li>cung ngược ($v$ là đỉnh đã thăm trong quá trình DFS từ $u$ đến $v$)</li>
 </ol>
 
 <p>Theo thiết kế cây DFS, một cung ngược không bao giờ là cạnh cầu, chỉ có cung xuôi mới có khả năng trở thành cạnh cầu.</p>
 
-<p>Do đó, việc đặt điều kiện kiểm tra cung xuôi (u-v) là cạnh cầu ra bên ngoài giống không ảnh hưởng đến tính đúng đắn của thuật toán.</p>
+<p>Do đó, việc đặt điều kiện kiểm tra cung xuôi $(u - v)$ là cạnh cầu ra bên ngoài giống không ảnh hưởng đến tính đúng đắn trong việc tìm cầu.</p>
 
-<p>Chỉ là mình phải check nhiều trường hợp thừa thãi hơn thôi</p>
+<p>Chỉ là mình phải check cả cung xuôi và cung ngược, check nhiều trường hợp thừa thãi hơn thôi</p>
+
+<h2 id="chú-ý-3">Chú ý 3:</h2>
+
+<p>Giả sử cho phép $low[u] = min(low[u], low[v])$ trong cả trường hợp đỉnh v đi từ u là một đỉnh đã thăm và chưa thăm như sau:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">:</span> <span class="n">a</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">par</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">num</span><span class="p">[</span><span class="n">v</span><span class="p">]){</span>
+        <span class="p">...</span>
+        <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span> <span class="c1">//minimize(low[u])</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span>
+            <span class="n">bridge</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">min</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="n">max</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)});</span>
+        <span class="p">}</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span> 
+    <span class="c1">//still minimize(low[u])</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Thì kết quả của bài toán tìm cầu vẫn đúng</p>
+
+<h3 id="lý-do-1">Lý do:</h3>
+
+<p>Theo định nghĩa chuẩn về $low[u]$, thì $low[u]$ là thời gian thăm của đỉnh có thứ tự thăm sớm nhất khi đi từ một đỉnh nào đó thuộc cây con gốc $u$ (bao gồm cả đỉnh $u$) qua không quá $1$ cạnh ngược</p>
+
+<p>Còn trong cách cài đặt này, $low[u]$ sẽ thể hiện thời gian thăm của đỉnh $P$ mà từ cây con gốc $u$ (bao gồm cả đỉnh $u$) đi qua có thể $0$, hoặc $1$, hoặc $2$, hoặc $3$,… cạnh ngược</p>
+
+<p>Nghe hơi kì kì. Và đúng là nó kì thật. Cách cài đặt thuật toán ban đầu không hướng $low[u]$ được tính toán theo cách như vậy.</p>
+
+<p>Tuy nhiên, cách cài đặt “cố tình lệch chuẩn” đó vẫn khiến cho thuật toán chạy đúng khi tìm cầu.</p>
+
+<p>Mục đích của chúng ta là làm rõ tại sao nó vẫn đúng.</p>
+
+<p>Trước hết, chúng ta quan sát một số ví dụ sau khi cài thuật toán “lệch chuẩn” để thấy rõ hơn ý nghĩa của $low[u]$.</p>
+
+<h4 id="ví-dụ-1">Ví dụ 1:</h4>
+
+<p><img src="ViDu_QuaMotCanhNguoc.png" alt="Minh họa" /></p>
+
+<p>Sau khi kết thúc quá trình xây dựng mảng $low[]$ và $num[]$ cho cây DFS, nói chung là $low[6] = 4$ và $low[4] = 4$.</p>
+
+<p>Nhận xét:</p>
+<ol>
+  <li>Từ cây con gốc $6$ có một đỉnh đi qua $1$ cạnh ngược để đến được đỉnh có $num = 4$. (Đỉnh này chính là đỉnh $6$)</li>
+  <li>Từ cây con gốc $4$ cũng có một đỉnh đi qua $1$ cạnh ngược để đến được đỉnh có $num = 4$. (Đỉnh đó cũng chính là đỉnh $6$ luôn)</li>
+</ol>
+
+<h4 id="ví-dụ-2">Ví dụ 2:</h4>
+
+<p><img src="ViDu_QuaHaiCanhNguoc.png" alt="Minh họa" /></p>
+
+<p>Sau khi dựng cây xong, $low[6]$ và $low[4]$ đều bằng 1.</p>
+
+<p>Nhận xét:</p>
+<ol>
+  <li>Từ cây con gốc $6$ có một đỉnh đi qua $2$ cạnh ngược để đến được đỉnh có $num = 1$. (Đỉnh này chính là đỉnh $6$)</li>
+  <li>Từ cây con gốc $4$ có một đỉnh đi qua $2$ cạnh ngược để đến được đỉnh có $num = 1$. (Đỉnh này cũng chính là đỉnh $6$ luôn)</li>
+</ol>
+
+<h4 id="ví-dụ-3">Ví dụ 3:</h4>
+
+<p><img src="ViDu_VoTinhDung.png" alt="Minh họa" /></p>
+
+<p>Không phải lúc nào những đỉnh có $num \neq 0$ cũng bị thăm trước trong cùng một nút trên cây.</p>
+
+<p>Trong ví dụ này, những đỉnh có $num = 0$ được thăm trước, và nó vô tình làm thuật toán thực hiện giống như thuật toán gốc dù cách cài đặt đang lệch chuẩn.</p>
+
+<h4 id="ví-dụ-4">Ví dụ 4:</h4>
+
+<p><img src="ViDu_QuaBaCanhNguoc.png" alt="Minh họa" /></p>
+
+<p>Sau khi dựng xong cây DFS, $low[6] = 1$ và $low[8] = 8$</p>
+
+<p>Nhận xét:</p>
+<ol>
+  <li>Từ cây con gốc $6$ có một đỉnh đi qua $3$ cạnh ngược để đến được đỉnh có $num = 1$. (Đỉnh này chính là đỉnh $7$)</li>
+  <li>Từ cây con gốc $8$, không có một đỉnh nào đi qua một cạnh ngược nào để đến được đỉnh có $num = 8$. Cuối cùng $low[8]$ giữ nguyên bằng $8$</li>
+</ol>
+
+<h4 id="nói-tóm-tại">Nói tóm tại</h4>
+<p>Qua $4$ ví dụ trên, ta đều thấy $low[u]$ với $u$ là một đỉnh bất kì trong cây DFS, nếu cố cài lệch chuẩn như vậy, thì sẽ không biết đâu mà lần: qua $0$ cạnh ngược nào, $1$ cạnh ngược, $2$, hay $3$ cạnh ngược,… $low[u]$ có thể sẽ bị thấp quá mức cần thiết theo định nghĩa chuẩn</p>
+
+<p>Tuy nhiên, cuối cùng thì tại sao thuật toán vẫn đúng trong quá trình tìm cầu?</p>
+
+<p>Một cách giải thích là như sau:</p>
+
+<p>Nếu cạnh $u - v$ là một cạnh xuôi trong quá trình backtrack:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="p">...</span>
+    <span class="n">DFS</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="p">...</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span>
+        <span class="n">bridge</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">min</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="n">max</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)});</span>
+    <span class="p">}</span>
+    <span class="p">...</span>
+</code></pre></div></div>
+
+<p>Thì $u - v$ là cạnh cầu khi và chỉ khi:</p>
+
+\[low[v] &gt; num[u]\]
+
+<p>Như vậy, chỉ cần trong cây con gốc $v$ có tồn tại ít nhất một đỉnh nào đó mà từ đỉnh đó có thể đi qua $1$ cung ngược, $2$, hay $3$ cung ngược,… đi chăng nữa, cuối cùng ta chỉ quan tâm là cung ngược đó có vượt qua (hoặc chạm vào) $u$ để đến một tổ tiên của $u$ hay không.</p>
+
+<p>Nếu thực sự trong cây con gốc $v$ không có đỉnh nào có thể vượt qua (hoặc chạm vào) $u$ trên cung ngược để đi về một tổ tiên nào đó của $u$, thì chắc chắn $low[v] &gt; num[u]$. Hiển nhiên điều này tương được với $u - v$ là cạnh cầu.</p>
+
+<p>Nếu trong cây con gốc $v$ có ít nhất một đỉnh có thể vượt qua (hoặc chạm vào) $u$ trên cung ngược để đi về một tổ tiên nào đó của $u$, thì không cần biết là từ đỉnh đó có thể tiếp tục đi qua bao nhiêu cung ngược đi chăng nữa, chắc chắn là $low[v] &lt;= num[u]$ mất rồi. Hiển nhiên điều này tương đương với $u - v$ không phải là cạnh cầu</p>
+
+<p>Như vậy, cách cài đặt “cố tình lệch chuẩn” đó vẫn tìm được đúng các cạnh cầu.</p>
 
 <p><a href="../">Quay lại trang chủ</a></p>
 
