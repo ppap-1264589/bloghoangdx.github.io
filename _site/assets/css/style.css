@@ -271,7 +271,7 @@ Small Device Styles
 
 
 /*Iphone 11*/
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 414px) {
   .table-container {
     width: 100%;
     overflow-x: auto;
@@ -284,14 +284,14 @@ Small Device Styles
   }
   table {
     width: 100%;
-    min-width: 50px;
+    min-width: 90px;
     border-collapse: collapse;
     white-space: nowrap;
   }
   th, td {
     padding: 3px 4px; /* Giảm padding để tiết kiệm không gian */
     border: 1px solid #ddd;
-    font-size: 8px; /* Kích thước chữ phù hợp với màn hình nhỏ */
+    font-size: 11px; /* Kích thước chữ phù hợp với màn hình nhỏ */
     text-align: center;
   }
 }
