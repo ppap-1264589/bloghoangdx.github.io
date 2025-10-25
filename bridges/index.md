@@ -375,14 +375,14 @@ Trong hình minh họa này, mũi tên hướng lên ứng với lượt duyệt
 
 Diễn giải trình tự quá trình dựng cây DFS và phát hiện thành phần cắt theo thuật toán lệch chuẩn:
 
-|Bước      |$u$  |$v$  |$low[u] =$                          |Điều kiện thành phần cắt   |
-|$4$       |$4$  |$2$  |$low[4] = min(low[4], num[2]) = 2$|$low[2] = 2 < num[4] = 4$❌
-|$BTrack$  |$3$  |$4$  |$low[3] = min(low[3], low[4]) = 3$|$low[4] = 2 < num[3] = 3$❌
-|$5$       |$3$  |$1$  |$low[3] = min(low[3], num[1]) = 1$|$low[1] = 1 < num[3] = 3$❌
-|$BTrack$  |$2$  |$3$  |$low[2] = min(low[2], low[3]) = 1$|$low[3] = 1 < num[2] = 2$❌
-|$6$       |$2$  |$4$  |$low[2] = min(low[2], num[4]) = 1$|$low[4] = 2 >= num[2] = 2$✅
-|$BTrack$  |$1$  |$2$  |$low[1] = min(low[1], low[2]) = 1$|$low[2] = 1 >= num[1] = 1$✅
-|$7$       |$1$  |$3$  |$low[1] = min(low[1], num[3]) = 1$|$low[3] = 1 >= num[1] = 1$✅
+|Bước      |$u$  |$v$  |$minimize(low[u])$   | Điều kiện thành phần cắt   |
+|$4$       |$4$  |$2$  |$minimize(low[4], num[2]) = 2$|$low[2] = 2 < num[4] = 4$❌
+|$BTrack$  |$3$  |$4$  |$minimize(low[3], low[4]) = 3$|$low[4] = 2 < num[3] = 3$❌
+|$5$       |$3$  |$1$  |$minimize(low[3], num[1]) = 1$|$low[1] = 1 < num[3] = 3$❌
+|$BTrack$  |$2$  |$3$  |$minimize(low[2], low[3]) = 1$|$low[3] = 1 < num[2] = 2$❌
+|$6$       |$2$  |$4$  |$minimize(low[2], num[4]) = 1$|$low[4] = 2 >= num[2] = 2$✅
+|$BTrack$  |$1$  |$2$  |$minimize(low[1], low[2]) = 1$|$low[2] = 1 >= num[1] = 1$✅
+|$7$       |$1$  |$3$  |$minimize(low[1], num[3]) = 1$|$low[3] = 1 >= num[1] = 1$✅
 
 ![Minh họa](ViDu_Misunderstanding_Disjoint_Component_Details.png)
 

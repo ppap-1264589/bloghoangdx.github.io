@@ -5,7 +5,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,maximum-scale=2">
-    <link rel="stylesheet" type="text/css" media="screen" href="/kinhnghiemlaptrinh/assets/css/style.css?v=b6a687977bedd61a144f65a6ed95495fb140f3b8">
+    <link rel="stylesheet" type="text/css" media="screen" href="/kinhnghiemlaptrinh/assets/css/style.css?v=0edbb92e8f3702c32a5b482db2b7115c8a4df729">
 
     <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Khớp cầu | Kinh nghiệm lập trình</title>
@@ -472,56 +472,56 @@ bất đẳng thức sau thỏa mãn cho cạnh ngược $u - v$:</strong></p>
       <td>Bước</td>
       <td>$u$</td>
       <td>$v$</td>
-      <td>$low[u] =$</td>
+      <td>$minimize(low[u])$</td>
       <td>Điều kiện thành phần cắt</td>
     </tr>
     <tr>
       <td>$4$</td>
       <td>$4$</td>
       <td>$2$</td>
-      <td>$low[4] = min(low[4], num[2]) = 2$</td>
+      <td>$minimize(low[4], num[2]) = 2$</td>
       <td>$low[2] = 2 &lt; num[4] = 4$❌</td>
     </tr>
     <tr>
       <td>$BTrack$</td>
       <td>$3$</td>
       <td>$4$</td>
-      <td>$low[3] = min(low[3], low[4]) = 3$</td>
+      <td>$minimize(low[3], low[4]) = 3$</td>
       <td>$low[4] = 2 &lt; num[3] = 3$❌</td>
     </tr>
     <tr>
       <td>$5$</td>
       <td>$3$</td>
       <td>$1$</td>
-      <td>$low[3] = min(low[3], num[1]) = 1$</td>
+      <td>$minimize(low[3], num[1]) = 1$</td>
       <td>$low[1] = 1 &lt; num[3] = 3$❌</td>
     </tr>
     <tr>
       <td>$BTrack$</td>
       <td>$2$</td>
       <td>$3$</td>
-      <td>$low[2] = min(low[2], low[3]) = 1$</td>
+      <td>$minimize(low[2], low[3]) = 1$</td>
       <td>$low[3] = 1 &lt; num[2] = 2$❌</td>
     </tr>
     <tr>
       <td>$6$</td>
       <td>$2$</td>
       <td>$4$</td>
-      <td>$low[2] = min(low[2], num[4]) = 1$</td>
+      <td>$minimize(low[2], num[4]) = 1$</td>
       <td>$low[4] = 2 &gt;= num[2] = 2$✅</td>
     </tr>
     <tr>
       <td>$BTrack$</td>
       <td>$1$</td>
       <td>$2$</td>
-      <td>$low[1] = min(low[1], low[2]) = 1$</td>
+      <td>$minimize(low[1], low[2]) = 1$</td>
       <td>$low[2] = 1 &gt;= num[1] = 1$✅</td>
     </tr>
     <tr>
       <td>$7$</td>
       <td>$1$</td>
       <td>$3$</td>
-      <td>$low[1] = min(low[1], num[3]) = 1$</td>
+      <td>$minimize(low[1], num[3]) = 1$</td>
       <td>$low[3] = 1 &gt;= num[1] = 1$✅</td>
     </tr>
   </tbody>

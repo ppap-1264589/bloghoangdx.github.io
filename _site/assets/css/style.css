@@ -267,18 +267,31 @@ Small Device Styles
   h6 { font-size: 12px; }
   code, pre { min-width: 240px; max-width: 320px; font-size: 11px; } }
 
-  @media screen and (max-width: 768px) {
-  table {
+
+
+
+/*Iphone 11*/
+@media screen and (max-width: 400px) {
+  .table-container {
     width: 100%;
     overflow-x: auto;
-    display: block;
+    -webkit-overflow-scrolling: touch; /* Cải thiện cuộn trên iOS */
+    -ms-overflow-style: none; /* Ẩn thanh cuộn trên Edge */
+    scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
+  }
+  .table-container::-webkit-scrollbar {
+    display: none; /* Ẩn thanh cuộn trên Chrome/Safari */
+  }
+  table {
+    width: 100%;
+    min-width: 50px;
+    border-collapse: collapse;
     white-space: nowrap;
   }
-  table thead,
-  table tbody,
-  table tr,
-  table th,
-  table td {
-    display: inline-block;
+  th, td {
+    padding: 3px 4px; /* Giảm padding để tiết kiệm không gian */
+    border: 1px solid #ddd;
+    font-size: 8px; /* Kích thước chữ phù hợp với màn hình nhỏ */
+    text-align: center;
   }
 }
