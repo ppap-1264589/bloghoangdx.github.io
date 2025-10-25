@@ -5,7 +5,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,maximum-scale=2">
-    <link rel="stylesheet" type="text/css" media="screen" href="/kinhnghiemlaptrinh/assets/css/style.css?v=3b6c3d9d2a4603322bdcbdb9832ba262622263d3">
+    <link rel="stylesheet" type="text/css" media="screen" href="/kinhnghiemlaptrinh/assets/css/style.css?v=b6a687977bedd61a144f65a6ed95495fb140f3b8">
 
     <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Khớp cầu | Kinh nghiệm lập trình</title>
@@ -71,10 +71,53 @@ MathJax = {
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1 id="bài-toán">Bài toán</h1>
+        <h1 id="hiểu-hơn-về-thuật-toán-tarjan">Hiểu hơn về thuật toán Tarjan</h1>
+
+<p>Ở đây mình ghi lại một số nhận xét và quan sát về sự khác biệt giữa thuật toán gốc và các thuật toán “lệch chuẩn” để thấy rõ hơn ý nghĩa thực sự của việc đặt các dòng lệnh đúng vị trí và cài đặt cho các biến thực hiện đúng chức năng thực sự của nó trong chương trình</p>
+
+<ul>
+  <li><a href="#hiểu-hơn-về-thuật-toán-tarjan">Hiểu hơn về thuật toán Tarjan</a></li>
+  <li><a href="#bài-toán">Bài toán</a></li>
+  <li><a href="#code">Code</a></li>
+  <li><a href="#các-chú-ý">Các chú ý</a>
+    <ul>
+      <li><a href="#chú-ý-1">Chú ý 1:</a></li>
+      <li><a href="#chú-ý-2">Chú ý 2:</a>
+        <ul>
+          <li><a href="#lý-do">Lý do:</a></li>
+        </ul>
+      </li>
+      <li><a href="#chú-ý-3">Chú ý 3:</a>
+        <ul>
+          <li><a href="#lý-do-1">Lý do:</a>
+            <ul>
+              <li><a href="#ví-dụ-1">Ví dụ 1:</a></li>
+              <li><a href="#ví-dụ-2">Ví dụ 2:</a></li>
+              <li><a href="#ví-dụ-3">Ví dụ 3:</a></li>
+              <li><a href="#ví-dụ-4">Ví dụ 4:</a></li>
+              <li><a href="#nói-tóm-tại">Nói tóm tại</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#chú-ý-4-xét-thuật-toán-chuẩn">Chú ý 4: (Xét thuật toán chuẩn)</a></li>
+      <li><a href="#chú-ý-5">Chú ý 5:</a></li>
+      <li><a href="#chú-ý-6">Chú ý 6:</a></li>
+      <li><a href="#chú-ý-7">Chú ý 7:</a>
+        <ul>
+          <li><a href="#lý-do-2">Lý do</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="bài-toán">Bài toán</h1>
 <p>Tìm cạnh cầu và đỉnh khớp</p>
 
-<h3 id="input">Input</h3>
+<ul>
+  <li>Input</li>
+</ul>
 
 <p>Dòng đầu nhập $n$ là số đỉnh, $m$ là số cạnh trong đồ thị $G$</p>
 
@@ -82,7 +125,9 @@ MathJax = {
 
 <p>Biết $G$ là đồ thị vô hướng</p>
 
-<h3 id="output">Output</h3>
+<ul>
+  <li>Output</li>
+</ul>
 
 <p>Cho biết các cạnh cầu và đỉnh khớp của $G$</p>
 
@@ -109,7 +154,7 @@ MathJax = {
 <span class="kt">int</span> <span class="n">root</span><span class="p">;</span>
 
 <span class="kt">void</span> <span class="nf">DFS</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">){</span>
-    <span class="kt">int</span> <span class="n">isolated</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span> <span class="o">!=</span> <span class="n">root</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">isolated</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="o">++</span><span class="n">tdfs</span><span class="p">;</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">:</span> <span class="n">a</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">par</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
@@ -124,7 +169,10 @@ MathJax = {
         <span class="p">}</span>
         <span class="k">else</span> <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">num</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span>
     <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">isolated</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">joint</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">u</span> <span class="o">==</span> <span class="n">root</span><span class="p">){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">isolated</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="n">joint</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">isolated</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">joint</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">signed</span> <span class="n">main</span> <span class="p">(){</span>
@@ -155,14 +203,14 @@ MathJax = {
         <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">f</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">s</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
     <span class="p">}</span>
 
-<span class="c1">//    cout &lt;&lt; joint.size() &lt;&lt; "\n";</span>
-<span class="c1">//    for (auto x : joint) cout &lt;&lt; x &lt;&lt; " ";</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">joint</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">x</span> <span class="o">:</span> <span class="n">joint</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
 
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h1 id="notes">Notes:</h1>
+<h1 id="các-chú-ý">Các chú ý</h1>
 
 <h2 id="chú-ý-1">Chú ý 1:</h2>
 <p>Một cạnh ngược trên cây DFS sẽ được thuật toán “chạy qua” $2$ lần</p>
@@ -177,7 +225,7 @@ MathJax = {
 
 <p>Điều này vô tình làm cho một cạnh ngược bị xét qua hai lần.</p>
 
-<p>Tại lượt duyệt 3:</p>
+<p>Tại lượt duyệt $3$:</p>
 <ul>
   <li>$low[u] = min(low[u], num[v])$.</li>
   <li>Lúc này sẽ $low[u]$ sẽ được cập nhật theo đúng định nghĩa của $low[]$.</li>
@@ -197,7 +245,7 @@ MathJax = {
 
 <p>$1.$ Việc cạnh ngược bị duyệt qua hai lần này không ảnh hưởng đến tính đúng của thuật toán.</p>
 
-<p>$2.$ $low[u]$ vẫn chỉ được update khi đang xét cạnh ngược lần thứ nhất</p>
+<p>$2.$ $low[u]$ vẫn chỉ được update khi đang xét cạnh ngược lần thứ nhất.</p>
 
 <h2 id="chú-ý-2">Chú ý 2:</h2>
 <p>Giả sử ta để điều kiện kiểm tra xem $(u, v)$ có phải cạnh cầu hay không ra bên ngoài điều kiện $\text{if (num[v] != 0)}$ như sau:</p>
@@ -234,20 +282,20 @@ MathJax = {
 
 <h2 id="chú-ý-3">Chú ý 3:</h2>
 
-<p>Giả sử cho phép $low[u] = min(low[u], low[v])$ trong cả trường hợp đỉnh v đi từ u là một đỉnh đã thăm và chưa thăm như sau:</p>
+<p>Giả sử cho phép $low[u] = min(low[u], low[v])$ trong cả trường hợp đỉnh $v$ đi từ $u$ là một đỉnh đã thăm và chưa thăm như sau:</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">:</span> <span class="n">a</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">par</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">num</span><span class="p">[</span><span class="n">v</span><span class="p">]){</span>
         <span class="p">...</span>
-        <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span> <span class="c1">//minimize(low[u])</span>
+        <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span> <span class="c1">//minimize(low[u], low[v])</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span>
             <span class="n">bridge</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">min</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="n">max</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)});</span>
         <span class="p">}</span>
         <span class="p">...</span>
     <span class="p">}</span>
     <span class="k">else</span> <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span> 
-    <span class="c1">//still minimize(low[u])</span>
+    <span class="c1">//still minimize(low[u], low[v])</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -269,7 +317,7 @@ MathJax = {
 
 <h4 id="ví-dụ-1">Ví dụ 1:</h4>
 
-<p><img src="ViDu_QuaMotCanhNguoc.png" alt="Minh họa" /></p>
+<p><img src="/kinhnghiemlaptrinh/bridges/ViDu_QuaMotCanhNguoc.png" alt="Minh họa" /></p>
 
 <p>Sau khi kết thúc quá trình xây dựng mảng $low[]$ và $num[]$ cho cây DFS, nói chung là $low[6] = 4$ và $low[4] = 4$.</p>
 
@@ -281,9 +329,9 @@ MathJax = {
 
 <h4 id="ví-dụ-2">Ví dụ 2:</h4>
 
-<p><img src="ViDu_QuaHaiCanhNguoc.png" alt="Minh họa" /></p>
+<p><img src="/kinhnghiemlaptrinh/bridges/ViDu_QuaHaiCanhNguoc.png" alt="Minh họa" /></p>
 
-<p>Sau khi dựng cây xong, $low[6]$ và $low[4]$ đều bằng 1.</p>
+<p>Sau khi dựng cây xong, $low[6]$ và $low[4]$ đều bằng $1$.</p>
 
 <p>Nhận xét:</p>
 <ol>
@@ -293,7 +341,7 @@ MathJax = {
 
 <h4 id="ví-dụ-3">Ví dụ 3:</h4>
 
-<p><img src="ViDu_VoTinhDung.png" alt="Minh họa" /></p>
+<p><img src="/kinhnghiemlaptrinh/bridges/ViDu_VoTinhDung.png" alt="Minh họa" /></p>
 
 <p>Không phải lúc nào những đỉnh có $num \neq 0$ cũng bị thăm trước trong cùng một nút trên cây.</p>
 
@@ -301,7 +349,7 @@ MathJax = {
 
 <h4 id="ví-dụ-4">Ví dụ 4:</h4>
 
-<p><img src="ViDu_QuaBaCanhNguoc.png" alt="Minh họa" /></p>
+<p><img src="/kinhnghiemlaptrinh/bridges/ViDu_QuaBaCanhNguoc.png" alt="Minh họa" /></p>
 
 <p>Sau khi dựng xong cây DFS, $low[6] = 1$ và $low[8] = 8$</p>
 
@@ -339,7 +387,155 @@ MathJax = {
 
 <p>Nếu trong cây con gốc $v$ có ít nhất một đỉnh có thể vượt qua (hoặc chạm vào) $u$ trên cung ngược để đi về một tổ tiên nào đó của $u$, thì không cần biết là từ đỉnh đó có thể tiếp tục đi qua bao nhiêu cung ngược đi chăng nữa, chắc chắn là $low[v] &lt;= num[u]$ mất rồi. Hiển nhiên điều này tương đương với $u - v$ không phải là cạnh cầu</p>
 
-<p>Như vậy, cách cài đặt “cố tình lệch chuẩn” đó vẫn tìm được đúng các cạnh cầu.</p>
+<p>Do đó, cách cài đặt “cố tình lệch chuẩn” này vẫn tìm được đúng các cạnh cầu.</p>
+
+<h2 id="chú-ý-4-xét-thuật-toán-chuẩn">Chú ý 4: (Xét thuật toán chuẩn)</h2>
+
+<p>Trong thuật toán chuẩn:</p>
+
+<p>Gọi $P_u$ là tập các đỉnh nằm trên đường đi từ $u$ đến gốc cây DFS, khi đó:</p>
+
+\[low[u] \in \{num[X] \; | \; X \in P_u \}\]
+
+<p>Đây là một hệ quả của việc thiết kế cây DFS. Do cây DFS không có cạnh chéo, nên không bao giờ $low[u]$ lại được cập nhật từ $num[v]$ với $v$ là một đỉnh không nằm trên cây con gốc $u$ cả.</p>
+
+<h2 id="chú-ý-5">Chú ý 5:</h2>
+
+<p>Giả sử cho phép $low[u] = min(low[u], num[v])$ trong cả trường hợp đỉnh v đi từ u là một đỉnh đã thăm và chưa thăm như sau:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">:</span> <span class="n">a</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">par</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">num</span><span class="p">[</span><span class="n">v</span><span class="p">]){</span>
+        <span class="p">...</span>
+        <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">num</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span> <span class="c1">//minimize(low[u], num[v])</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span>
+            <span class="n">bridge</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">min</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="n">max</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)});</span>
+        <span class="p">}</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">num</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span> 
+    <span class="c1">//also minimize(low[u], num[v])</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Thì nhìn chung là kết quả của bài toán tìm cầu hoặc tìm khớp đều sẽ sai.</p>
+
+<p>Lý do đơn giản là việc cài đặt như vậy sẽ khiến mảng $low[]$ gần như là vô nghĩa.</p>
+
+<p>$low[u]$ lúc này chỉ cho biết từ đỉnh $u$ (không cần biết trong cây con gốc $u$) có thể đi qua không quá một cạnh ngược lên một đỉnh $v$ nào đó hay không. $low[u]$ không khai thác được thông tin liên quan về cây con gốc $u$ của chính đỉnh $u$.</p>
+
+<h2 id="chú-ý-6">Chú ý 6:</h2>
+
+<p>Mối quan hệ giữa $low[]$ và $num[]$ trên một cạnh ngược trong lần duyệt thứ hai</p>
+
+<p><strong>Tại thời điểm cây con gốc $v$ đã hoàn thiện thông tin, 
+xét cạnh ngược $u$ là cha, $v$ là con, 
+bất đẳng thức sau thỏa mãn cho cạnh ngược $u - v$:</strong></p>
+
+\[low[u] &lt;= low[v] &lt;= num[u] &lt; num[v]\]
+
+<p>Đây là một nhận xét khá đặc biệt khi mình nghiên cứu kĩ quá trình duyệt cạnh ngược lần thứ hai.</p>
+
+<p>Bất đẳng thức này nói chung là không đúng khi $u-v$ là một cạnh xuôi.</p>
+
+<p>Chả hạn khi $u-v$ là một cạnh xuôi: nếu $v$ và cây con của $v$ không có cạnh ngược đến $u$ hoặc tổ tiên của $u$, thì $low[v] = num[v] &gt; num[u]$</p>
+
+<h2 id="chú-ý-7">Chú ý 7:</h2>
+
+<p>Giả sử ta đặt điều kiện kiểm tra thành phần cắt ra bên ngoài điều kiện $(!num[v])$ như sau:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">:</span> <span class="n">a</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">par</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">num</span><span class="p">[</span><span class="n">v</span><span class="p">]){</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">num</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="o">++</span><span class="n">isolated</span><span class="p">;</span>
+    <span class="c1">//Đặt điều kiện kiểm tra thành phần cắt ra ngoài điều kiện (!num[v])</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Thì sẽ có một số đỉnh bị đếm ra không phải là khớp.</p>
+
+<h3 id="lý-do-2">Lý do</h3>
+
+<p>Ta sẽ dựa vào một ví dụ để thấy đỉnh khớp bị đếm thừa như thế nào.</p>
+
+<p>Trong hình minh họa này, mũi tên hướng lên ứng với lượt duyệt cạnh ngược lần thứ nhất, mũi tên hướng xuống ứng với lượt duyệt cạnh ngược lần thứ hai.</p>
+
+<p><img src="/kinhnghiemlaptrinh/bridges/ViDu_Misunderstanding_Disjoint_Component.png" alt="Minh họa" /></p>
+
+<p>Diễn giải trình tự quá trình dựng cây DFS và phát hiện thành phần cắt theo thuật toán lệch chuẩn:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Bước</td>
+      <td>$u$</td>
+      <td>$v$</td>
+      <td>$low[u] =$</td>
+      <td>Điều kiện thành phần cắt</td>
+    </tr>
+    <tr>
+      <td>$4$</td>
+      <td>$4$</td>
+      <td>$2$</td>
+      <td>$low[4] = min(low[4], num[2]) = 2$</td>
+      <td>$low[2] = 2 &lt; num[4] = 4$❌</td>
+    </tr>
+    <tr>
+      <td>$BTrack$</td>
+      <td>$3$</td>
+      <td>$4$</td>
+      <td>$low[3] = min(low[3], low[4]) = 3$</td>
+      <td>$low[4] = 2 &lt; num[3] = 3$❌</td>
+    </tr>
+    <tr>
+      <td>$5$</td>
+      <td>$3$</td>
+      <td>$1$</td>
+      <td>$low[3] = min(low[3], num[1]) = 1$</td>
+      <td>$low[1] = 1 &lt; num[3] = 3$❌</td>
+    </tr>
+    <tr>
+      <td>$BTrack$</td>
+      <td>$2$</td>
+      <td>$3$</td>
+      <td>$low[2] = min(low[2], low[3]) = 1$</td>
+      <td>$low[3] = 1 &lt; num[2] = 2$❌</td>
+    </tr>
+    <tr>
+      <td>$6$</td>
+      <td>$2$</td>
+      <td>$4$</td>
+      <td>$low[2] = min(low[2], num[4]) = 1$</td>
+      <td>$low[4] = 2 &gt;= num[2] = 2$✅</td>
+    </tr>
+    <tr>
+      <td>$BTrack$</td>
+      <td>$1$</td>
+      <td>$2$</td>
+      <td>$low[1] = min(low[1], low[2]) = 1$</td>
+      <td>$low[2] = 1 &gt;= num[1] = 1$✅</td>
+    </tr>
+    <tr>
+      <td>$7$</td>
+      <td>$1$</td>
+      <td>$3$</td>
+      <td>$low[1] = min(low[1], num[3]) = 1$</td>
+      <td>$low[3] = 1 &gt;= num[1] = 1$✅</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/kinhnghiemlaptrinh/bridges/ViDu_Misunderstanding_Disjoint_Component_Details.png" alt="Minh họa" /></p>
+
+<p>Tóm lại, sau toàn bộ quá trình đếm thành phần cắt, đỉnh $1$ là gốc cây DFS nhận được $2$ thành phần cắt, còn đỉnh $2$ nhận được $1$ thành phần cắt</p>
+
+<p>Thuật toán “lệch chuẩn” này sẽ hiểu là đỉnh $1$ và đỉnh $2$ là hai đỉnh khớp.</p>
+
+<p>Mặc dù, đồ thị này không hề có đỉnh khớp nào cả.</p>
+
+<p>Như vậy, việc đếm số thành phần cắt chỉ nên thực hiện khi ta đang xét trên cạnh xuôi của cây DFS. Xét trên cả cạnh ngược sẽ đếm thừa thông tin mà đúng ra cạnh xuôi đã cung cấp đủ.</p>
 
 <p><a href="../">Quay lại trang chủ</a></p>
 
