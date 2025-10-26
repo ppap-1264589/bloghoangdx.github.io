@@ -1,0 +1,18 @@
+@media screen and (max-width: 420px) {
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  table {
+    width: 100%;
+    min-width: 100px;
+    border-collapse: collapse;
+    white-space: nowrap;
+  }
+  th, td {
+    padding: 3px 4px;
+    border: 1px solid #ddd;
+    font-size: 9px;
+  }
+}
