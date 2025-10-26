@@ -213,17 +213,17 @@ MathJax = {
 <h1 id="các-chú-ý">Các chú ý</h1>
 
 <h2 id="chú-ý-1">Chú ý 1:</h2>
-<p>Một cạnh ngược trên cây DFS sẽ được thuật toán “chạy qua” $2$ lần</p>
+<p>Cùng một cạnh ngược, $low[u] = min(low[u], num[v])$ sẽ được thực hiện đến hai lần</p>
 
 <p><img src="ViDu_CanhNguocThamHaiLan.png" alt="Minh họa" /></p>
 
-<p>Rất nhiều người nghĩ là cạnh ngược chỉ đi một lần là lượt thăm số $3$, chứ không có lượt thăm số $4$.</p>
+<p>Rất nhiều người nghĩ là câu lệnh $low[u] = min(low[u], num[v])$ chỉ thực hiện một lần tại lượt thăm cạnh ngược số $3$, chứ không thực ở lượt thăm số $4$.</p>
 
-<p>Lý do cho hiện tượng thăm hai lần này chính là do cách cài đặt của thuật toán.</p>
+<p>Lý do cho hiện tượng thực hiện hai lần này chính là do cách cài đặt của thuật toán.</p>
 
 <p>Để xem có cạnh ngược vào đi vòng qua $u$ lên tổ tiên của $u$ không, thuật toán vẫn cho phép một đỉnh $v$ có $num[v] \neq 0$ có thể được chạm tới từ một đỉnh khác trong quá trình duyệt cây.</p>
 
-<p>Điều này vô tình làm cho một cạnh ngược bị xét qua hai lần.</p>
+<p>Điều này vô tình làm cho một cạnh ngược khiến một câu lệnh phải thực hai lần.</p>
 
 <p>Tại lượt duyệt $3$:</p>
 <ul>
@@ -243,7 +243,7 @@ MathJax = {
 
 <p>Như vậy:</p>
 
-<p>$1.$ Việc cạnh ngược bị duyệt qua hai lần này không ảnh hưởng đến tính đúng của thuật toán.</p>
+<p>$1.$ Việc một câu lệnh phải thực hiện hai lần như vậy không ảnh hưởng đến tính đúng của thuật toán.</p>
 
 <p>$2.$ $low[u]$ vẫn chỉ được update khi đang xét cạnh ngược lần thứ nhất.</p>
 

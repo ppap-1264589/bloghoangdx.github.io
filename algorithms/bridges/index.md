@@ -127,17 +127,17 @@ signed main (){
 # Các chú ý
 
 ## Chú ý 1:
-Một cạnh ngược trên cây DFS sẽ được thuật toán "chạy qua" $2$ lần
+Cùng một cạnh ngược, $low[u] = min(low[u], num[v])$ sẽ được thực hiện đến hai lần
 
 ![Minh họa](ViDu_CanhNguocThamHaiLan.png)
 
-Rất nhiều người nghĩ là cạnh ngược chỉ đi một lần là lượt thăm số $3$, chứ không có lượt thăm số $4$. 
+Rất nhiều người nghĩ là câu lệnh $low[u] = min(low[u], num[v])$ chỉ thực hiện một lần tại lượt thăm cạnh ngược số $3$, chứ không thực ở lượt thăm số $4$. 
 
-Lý do cho hiện tượng thăm hai lần này chính là do cách cài đặt của thuật toán. 
+Lý do cho hiện tượng thực hiện hai lần này chính là do cách cài đặt của thuật toán. 
 
 Để xem có cạnh ngược vào đi vòng qua $u$ lên tổ tiên của $u$ không, thuật toán vẫn cho phép một đỉnh $v$ có $num[v] \neq 0$ có thể được chạm tới từ một đỉnh khác trong quá trình duyệt cây.
 
-Điều này vô tình làm cho một cạnh ngược bị xét qua hai lần.
+Điều này vô tình làm cho một cạnh ngược khiến một câu lệnh phải thực hai lần.
 
 Tại lượt duyệt $3$:
 - $low[u] = min(low[u], num[v])$.
@@ -154,7 +154,7 @@ Tại lượt duyệt $4$:
 
 Như vậy:
 
-$1.$ Việc cạnh ngược bị duyệt qua hai lần này không ảnh hưởng đến tính đúng của thuật toán. 
+$1.$ Việc một câu lệnh phải thực hiện hai lần như vậy không ảnh hưởng đến tính đúng của thuật toán. 
 
 $2.$ $low[u]$ vẫn chỉ được update khi đang xét cạnh ngược lần thứ nhất.
 
@@ -393,7 +393,6 @@ Thuật toán "lệch chuẩn" này sẽ hiểu là đỉnh $1$ và đỉnh $2$ 
 Mặc dù, đồ thị này không hề có đỉnh khớp nào cả.
 
 Như vậy, việc đếm số thành phần cắt chỉ nên thực hiện khi ta đang xét trên cạnh xuôi của cây DFS. Xét trên cả cạnh ngược sẽ đếm thừa thông tin mà đúng ra cạnh xuôi đã cung cấp đủ.
-
 
 
 [Quay lại trang chủ](../../)
