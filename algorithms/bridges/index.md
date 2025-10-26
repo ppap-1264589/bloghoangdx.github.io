@@ -396,4 +396,4 @@ Như vậy, việc đếm số thành phần cắt chỉ nên thực hiện khi 
 
 
 
-[Quay lại trang chủ](../)
+[Quay lại trang chủ](../../)

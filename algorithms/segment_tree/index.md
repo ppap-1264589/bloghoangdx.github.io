@@ -199,7 +199,7 @@ signed main(){
     cout << res;
 }
 ```
-[Quay lại trang chủ](../)
+[Quay lại trang chủ](../../)
 
 ### Bonus
 

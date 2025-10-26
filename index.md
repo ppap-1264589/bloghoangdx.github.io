@@ -12,8 +12,8 @@ use_math: true
 
 # Các chủ đề
 
-[Bảng băm](hashing/)
+[Bảng băm](algorithms/hashing/)
 
-[Ứng dụng Segment Tree](segment_tree/)
+[Ứng dụng Segment Tree](algorithms/segment_tree/)
 
-[Cầu và Khớp](bridges/)
+[Cầu và Khớp](algorithms/bridges/)

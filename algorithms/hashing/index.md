@@ -11,4 +11,4 @@ Thực hiện yêu cầu sau:
 
 ...
 
-[Quay lại trang chủ](../)
+[Quay lại trang chủ](../../)
