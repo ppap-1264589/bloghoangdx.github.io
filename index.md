@@ -17,3 +17,5 @@ use_math: true
 [Ứng dụng Segment Tree](algorithms/segment_tree/)
 
 [Cầu và Khớp](algorithms/bridges/)
+
+[Luồng cực đại](algorithms/maxflow/)
