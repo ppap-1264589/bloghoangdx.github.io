@@ -91,7 +91,6 @@ void make_gap(int k){
     }
     up(h,k,n) B[h].clear();
 }
-//One thing I can not understand is why this loop still makes algorithm run faster in practice
 
 void push(int u, int i){
     EDGE& e = a[u][i];
@@ -156,8 +155,14 @@ void findMincut(){
 
 void findMaxflow(){
     excess[s] = MODLL;
-    cnth[0] = n;
-    activate(s);
+    height[s] = n;
+    cnth[0] = n-1;
+    cnth[n] = 1;
+
+    for (int i = 0; i < (int)a[s].size(); i++){
+        EDGE& e = a[s][i];
+        if (e.capa > 0) push(s, i);
+    }
 
     while (highest >= 0){
         while (!B[highest].empty()){
@@ -186,6 +191,7 @@ void buildBiGraph(){
         int u,v;
         long long w;
         cin >> u >> v >> w;
+        if (u == v) continue;
         if (u > v) swap(u, v);
         saved_edges[make_pair(u, v)] += w;
     }
@@ -206,6 +212,7 @@ void buildDiGraph(){
         int u,v;
         long long w;
         cin >> u >> v >> w;
+        if (u == v) continue;
         saved_edges[make_pair(u, v)] += w;
     }
 
@@ -240,21 +247,10 @@ signed main(){
     cin >> n >> m;
     s = 1, t = n;
 
-    buildBiGraph(); //choose buildBiGraph() or buildDiGraph() to make graph bidirectional or not.
+    buildDiGraph(); //choose buildBiGraph() or buildDiGraph() to make graph bidirectional or not.
     findMaxflow();
     cout << excess[t];
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
